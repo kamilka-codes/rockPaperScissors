@@ -1,65 +1,64 @@
+const progress_span = document.getElementById("progress");
+const result_span = document.getElementById("result");
+const newGame = document.getElementById("newgame");
+const rock_div = document.getElementById("rock");
+const paper_div = document.getElementById("paper");
+const scissors_div = document.getElementById("scissors");
 
-//one round of RPS, compare player and computer's inputs, output result of the round
-// 1. get user input
-// 2. define values of R, P, and S compared to one another
-// 3. compare inputs
-// 4. output result of match
-// Scoring: initialize score before function playRound
-// Add one point in winning conditions
-// Repeat funtion 5 times
+function playGame () {
+    const playerScore = 0;
+    const computerScore = 0;
+    
+        function playRound() {
+            var computerSelection;
+            var functCounter = 0;
 
-function playGame() {
-        let playerScore = 0;
-        let computerScore = 0;
-        let result;
+            while (functCounter < 1) {
+            function computerPlay () {
+                var weapons = ["rock", "paper", "scissors"];
+                computerSelection = weapons[Math.random() * weapons.length | 0];
+                console.log(computerSelection);
+                functCounter++;
+                break ;
+            }
+            computerPlay();}
 
-    function playRound(playerSelection, computerSelection) {
+            var playerSelection;
+            rock_div.addEventListener('click', function() {
+                playerSelection = "rock";
+                console.log(playerSelection);
+                })
+            paper_div.addEventListener('click', function() {
+                playerSelection = "paper";
+                console.log(playerSelection);
+                })
+            scissors_div.addEventListener('click', function() {
+                playerSelection = "scissors";
+                console.log(playerSelection);
+                })
 
-        var playerSelection = prompt("Shoot!");
-        playerSelection.toLowerCase();
-
-        var computerSelection;
-        function computerPlay() {
-            var weapons = ["rock", "paper", "scissors"];
-            computerSelection = weapons[Math.random() * weapons.length | 0];
-            //console.log(computerSelection);
-        }
-        computerPlay();
-        
-        // define comparative values
-        if (computerSelection == playerSelection) {
-            result = "It's a draw!";
-        }
-        else if ((computerSelection == "rock" && playerSelection == "paper")
-        || (computerSelection == "paper" && playerSelection == "scissors")
-        || (computerSelection == "scissors" && playerSelection == "rock")) {
-            playerScore++;
-            result = "You win! :)";
-        }
-        else if ((computerSelection == "paper" && playerSelection == "rock")
-        || (computerSelection == "scissors" && playerSelection == "paper")
-        || (computerSelection == "rock" && playerSelection == "scissors")) {
-            computerScore++;
-            result = "You lose. :("
-        }
-        console.log("You selected " + playerSelection);
-        console.log("Your computer selected " + computerSelection);
-        console.log(result);
+            function scoring(playerSelection, computerSelection) {
+                if ((playerSelection == "rock" && computerSelection == "scissors") || 
+                (playerSelection == "paper" && computerSelection == "rock") ||
+                (playerSelection == "scissors" && computerSelection == "paper")) {
+                    playerScore++;
+                    result_span.innerHTML("You win!");
+                    progress_span.innterHTML("Your score is: " + playerScore <br> "Your computer's score is: " + computerScore);
+                }
+                else if ((playerSelection == "scissors" && computerSelection == "rock") || 
+                (playerSelection == "rock" && computerSelection == "paper") ||
+                (playerSelection == "paper" && computerSelection == "scissors")) {
+                    computerScore++;
+                    result_span.innerHTML("You lose!");
+                    progress_span.innterHTML("Your score is: " + playerScore <br> "Your computer's score is: " + computerScore);
+                }
+            scoring(playerSelection, computerSelection);
+        }  
     }
-    playRound ();
-    playRound ();
-    playRound ();
-    playRound ();
-    playRound ();
-    console.log("Your score is: " + playerScore);
-    console.log("Your computer's score is " + computerScore);
-    if (playerScore == computerScore) {
-        console.log("Draw");
-    }
-    else if (playerScore > computerScore) {
-        console.log("You win");
-    }
-    else if (playerScore < computerScore) {
-        console.log("You lose");
-    }
+    while (computerScore <= 5 && playerScore <= 5) {
+        playRound();
+        }
 }
+newGame.addEventListener("click", ()=> {
+    playGame();
+});

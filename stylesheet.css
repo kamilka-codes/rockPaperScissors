@@ -1,0 +1,9 @@
+img {
+    border-radius: 10%;
+    border-width: 10px;
+    border-color: #383838;
+    background-color: cornflowerblue;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
